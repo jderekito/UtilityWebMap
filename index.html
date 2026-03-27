@@ -413,7 +413,8 @@ const METRIC_CONFIG = {
 };
 
 // ── Map init — light basemap ──
-const map = L.map('map', { center: [26.92, -80.15], zoom: 11 });
+const map = L.map('map');
+map.fitBounds([[26.6922, -80.3578], [26.8240, -80.0750]], { padding: [24, 24] });
 
 // Light, bright basemap so heat colors pop
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
