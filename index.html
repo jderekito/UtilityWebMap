@@ -28,6 +28,7 @@
     background: var(--bg);
     color: var(--text);
     height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -37,11 +38,11 @@
   header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    padding: 0 20px;
-    height: 56px;
+    padding: 0 16px;
+    height: 52px;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
     flex-shrink: 0;
     z-index: 1000;
   }
@@ -63,19 +64,15 @@
 
   header h1 span { color: var(--text-muted); font-weight: 300; }
 
+  /* Desktop controls in header */
   .header-divider { width: 1px; height: 26px; background: var(--border); flex-shrink: 0; }
-
   .controls { display: flex; align-items: center; gap: 10px; flex: 1; flex-wrap: wrap; }
-
   .control-group { display: flex; align-items: center; gap: 6px; }
 
   .control-label {
-    font-size: 10px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    white-space: nowrap;
+    font-size: 10px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--text-muted); white-space: nowrap;
     font-family: 'DM Mono', monospace;
   }
 
@@ -84,75 +81,52 @@
     border: 1px solid var(--border);
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 13px; font-weight: 500;
     padding: 5px 26px 5px 9px;
     border-radius: var(--radius);
-    cursor: pointer;
-    appearance: none;
+    cursor: pointer; appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b97b8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 8px center;
+    background-repeat: no-repeat; background-position: right 8px center;
     transition: border-color 0.15s;
   }
 
   select:hover { border-color: var(--accent); }
   select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,195,247,0.15); }
 
-  /* ── View toggle ── */
+  /* View toggle */
   .view-toggle {
-    display: flex;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    flex-shrink: 0;
+    display: flex; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; flex-shrink: 0;
   }
 
   .view-btn {
-    padding: 5px 12px;
-    font-size: 12px;
-    font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text-muted);
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    transition: all 0.15s;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    padding: 5px 12px; font-size: 12px; font-weight: 500;
+    font-family: 'DM Sans', sans-serif; color: var(--text-muted);
+    background: transparent; border: none; cursor: pointer;
+    transition: all 0.15s; white-space: nowrap;
+    display: flex; align-items: center; gap: 5px;
   }
 
-  .view-btn.active {
-    background: var(--accent);
-    color: #0d1b2a;
-    font-weight: 600;
-  }
-
+  .view-btn.active { background: var(--accent); color: #0d1b2a; font-weight: 600; }
   .view-btn:not(.active):hover { color: var(--text); background: rgba(79,195,247,0.1); }
 
-  /* ── Stats ── */
+  /* Stats */
   .stats { display: flex; align-items: center; gap: 18px; margin-left: auto; flex-shrink: 0; }
-
   .stat { display: flex; flex-direction: column; align-items: flex-end; }
 
   .stat-value {
-    font-family: 'DM Mono', monospace;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--accent);
-    line-height: 1;
+    font-family: 'DM Mono', monospace; font-size: 14px;
+    font-weight: 500; color: var(--accent); line-height: 1;
   }
 
   .stat-label {
-    font-size: 9px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-top: 2px;
+    font-size: 9px; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;
   }
+
+  /* Mobile filter button (hidden on desktop) */
+  .mobile-filter-btn { display: none; }
 
   /* ── Map ── */
   #map { flex: 1; z-index: 1; }
@@ -160,74 +134,49 @@
   /* ── Legend ── */
   .legend-panel {
     position: absolute;
-    bottom: 28px;
-    left: 16px;
+    bottom: 28px; left: 16px;
     z-index: 1000;
-    background: rgba(34, 40, 57, 0.95);
+    background: rgba(34,40,57,0.95);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 14px 16px;
-    min-width: 210px;
+    padding: 14px 16px; min-width: 210px;
   }
 
   .legend-title {
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    margin-bottom: 10px;
+    font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--text-muted); margin-bottom: 10px;
     font-family: 'DM Mono', monospace;
   }
 
-  /* Points legend */
   .points-legend { display: none; }
   .points-legend.active { display: block; }
 
   .dot-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 6px;
-    font-size: 11px;
-    color: var(--text-muted);
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 6px; font-size: 11px; color: var(--text-muted);
   }
 
-  .dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
-  /* Heatmap legend */
   .heat-legend { display: none; }
   .heat-legend.active { display: block; }
 
-  .legend-gradient {
-    height: 10px;
-    border-radius: 5px;
-    margin-bottom: 6px;
-  }
+  .legend-gradient { height: 10px; border-radius: 5px; margin-bottom: 6px; }
 
   .legend-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 10px;
-    color: var(--text-muted);
+    display: flex; justify-content: space-between;
+    font-size: 10px; color: var(--text-muted);
     font-family: 'DM Mono', monospace;
   }
 
   .legend-divider { height: 1px; background: var(--border); margin: 10px 0; }
 
   .metric-badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 500;
-    font-family: 'DM Mono', monospace;
-    margin-bottom: 4px;
+    display: inline-block; padding: 2px 8px; border-radius: 20px;
+    font-size: 11px; font-weight: 500;
+    font-family: 'DM Mono', monospace; margin-bottom: 4px;
   }
 
   .badge-u7   { background: rgba(79,195,247,0.15); color: #4fc3f7; border: 1px solid rgba(79,195,247,0.3); }
@@ -236,36 +185,174 @@
 
   .legend-desc { font-size: 11px; color: var(--text-muted); margin-top: 4px; line-height: 1.5; }
 
-  /* ── No data msg ── */
+  /* ── No data ── */
   .no-data-msg {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
     z-index: 900;
     background: rgba(34,40,57,0.96);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px 28px;
-    text-align: center;
-    pointer-events: none;
-    display: none;
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px 28px; text-align: center;
+    pointer-events: none; display: none;
   }
 
   .no-data-msg .icon { font-size: 26px; margin-bottom: 8px; }
   .no-data-msg p { color: var(--text-muted); font-size: 13px; }
 
-  /* Leaflet overrides — lighter basemap, keep controls readable */
+  /* ── Mobile bottom drawer ── */
+  .mobile-drawer {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 2000;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-radius: 16px 16px 0 0;
+    padding: 0 0 env(safe-area-inset-bottom, 12px);
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .mobile-drawer.open { transform: translateY(0); }
+
+  .drawer-handle {
+    width: 36px; height: 4px;
+    background: var(--border); border-radius: 2px;
+    margin: 12px auto 16px;
+  }
+
+  .drawer-title {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--text-muted); padding: 0 20px 12px;
+    font-family: 'DM Mono', monospace;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .drawer-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
+
+  .drawer-row { display: flex; flex-direction: column; gap: 6px; }
+
+  .drawer-label {
+    font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.07em;
+    color: var(--text-muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .drawer-row select {
+    width: 100%; padding: 10px 32px 10px 12px;
+    font-size: 15px; border-radius: var(--radius);
+  }
+
+  .drawer-view-toggle {
+    display: flex; gap: 8px;
+  }
+
+  .drawer-view-btn {
+    flex: 1; padding: 10px;
+    font-size: 14px; font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-muted);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer; transition: all 0.15s;
+  }
+
+  .drawer-view-btn.active {
+    background: var(--accent); color: #0d1b2a;
+    border-color: var(--accent); font-weight: 600;
+  }
+
+  /* Mobile stats bar below header */
+  .mobile-stats {
+    display: none;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 6px 16px;
+    flex-direction: row;
+    gap: 0;
+  }
+
+  .mobile-stat {
+    flex: 1; text-align: center;
+    border-right: 1px solid var(--border);
+    padding: 2px 0;
+  }
+
+  .mobile-stat:last-child { border-right: none; }
+
+  .mobile-stat-value {
+    font-family: 'DM Mono', monospace; font-size: 15px;
+    font-weight: 500; color: var(--accent); display: block;
+  }
+
+  .mobile-stat-label {
+    font-size: 9px; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+
+  /* ── Overlay backdrop ── */
+  .drawer-backdrop {
+    display: none;
+    position: fixed; inset: 0;
+    z-index: 1999;
+    background: rgba(0,0,0,0.4);
+  }
+
+  .drawer-backdrop.open { display: block; }
+
+  /* Leaflet overrides */
   .leaflet-control-zoom a {
-    background: var(--surface2) !important;
-    color: var(--text) !important;
+    background: var(--surface2) !important; color: var(--text) !important;
     border-color: var(--border) !important;
   }
+
   .leaflet-control-attribution {
     background: rgba(34,40,57,0.8) !important;
-    color: var(--text-muted) !important;
-    font-size: 10px !important;
+    color: var(--text-muted) !important; font-size: 10px !important;
   }
+
   .leaflet-control-attribution a { color: var(--accent) !important; }
+
+  /* ════════════════════════════════════
+     MOBILE  ≤ 640px
+  ════════════════════════════════════ */
+  @media (max-width: 640px) {
+    /* Hide desktop controls */
+    .controls { display: none; }
+    .header-divider { display: none; }
+    .stats { display: none; }
+    header h1 span { display: none; }
+
+    /* Show mobile filter button */
+    .mobile-filter-btn {
+      display: flex;
+      align-items: center; gap: 6px;
+      margin-left: auto;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text); font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 500;
+      padding: 6px 12px; cursor: pointer;
+    }
+
+    /* Show mobile stats row */
+    .mobile-stats { display: flex; }
+
+    /* Show drawer */
+    .mobile-drawer { display: block; }
+
+    /* Legend: compact, bottom-right on mobile */
+    .legend-panel {
+      bottom: 16px; left: auto; right: 16px;
+      min-width: 160px; padding: 10px 12px;
+    }
+
+    .legend-desc { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -289,8 +376,8 @@
     <div class="control-group">
       <span class="control-label">Metric</span>
       <select id="metricSel">
-        <option value="u7">U2 Encroachment &gt; 7 ft</option>
-        <option value="v150">U2 Volume &gt; 150 cu ft</option>
+        <option value="u7">Encroachment &gt; 8 ft</option>
+        <option value="v150">Volume &gt; 150 cu ft</option>
         <option value="c6">Clearance to Wire &lt; 6 ft</option>
       </select>
     </div>
@@ -339,7 +426,81 @@
       <span class="stat-label">% Flagged</span>
     </div>
   </div>
+
+  <!-- Mobile filter button -->
+  <button class="mobile-filter-btn" onclick="toggleDrawer()">
+    <span>⚙</span> Filters
+  </button>
 </header>
+
+<!-- Mobile stats bar -->
+<div class="mobile-stats">
+  <div class="mobile-stat">
+    <span class="mobile-stat-value" id="mStatTotal">—</span>
+    <span class="mobile-stat-label">Total</span>
+  </div>
+  <div class="mobile-stat">
+    <span class="mobile-stat-value" id="mStatActive">—</span>
+    <span class="mobile-stat-label">Flagged</span>
+  </div>
+  <div class="mobile-stat">
+    <span class="mobile-stat-value" id="mStatPct">—</span>
+    <span class="mobile-stat-label">% Flagged</span>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleDrawer()"></div>
+
+<!-- Mobile bottom drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-handle"></div>
+  <div class="drawer-title">Map Filters</div>
+  <div class="drawer-body">
+    <div class="drawer-row">
+      <span class="drawer-label">Year</span>
+      <select id="mYearSel" onchange="syncFromMobile('year')">
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024" selected>2024</option>
+        <option value="2025">2025 (Forecast)</option>
+      </select>
+    </div>
+    <div class="drawer-row">
+      <span class="drawer-label">Metric</span>
+      <select id="mMetricSel" onchange="syncFromMobile('metric')">
+        <option value="u7">Encroachment &gt; 8 ft</option>
+        <option value="v150">Volume &gt; 150 cu ft</option>
+        <option value="c6">Clearance to Wire &lt; 6 ft</option>
+      </select>
+    </div>
+    <div class="drawer-row">
+      <span class="drawer-label">Month</span>
+      <select id="mMonthSel" onchange="syncFromMobile('month')">
+        <option value="all">All Active Months</option>
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+    <div class="drawer-row">
+      <span class="drawer-label">View</span>
+      <div class="drawer-view-toggle">
+        <button class="drawer-view-btn active" id="mBtnPoints" onclick="setView('points')">● Points</button>
+        <button class="drawer-view-btn" id="mBtnHeat" onclick="setView('heat')">◈ Heat Map</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div style="position:relative; flex:1; display:flex; flex-direction:column;">
   <div id="map"></div>
@@ -369,8 +530,8 @@
     </div>
 
     <div class="legend-divider"></div>
-    <div id="legendBadge" class="metric-badge badge-u7">U2 Length &gt; 7 ft</div>
-    <div class="legend-desc" id="legendDesc">Poles where U2 encroachment length exceeds the 7-foot threshold.</div>
+    <div id="legendBadge" class="metric-badge badge-u7">Encroachment &gt; 8 ft</div>
+    <div class="legend-desc" id="legendDesc">Poles where encroachment length exceeds the 8-foot threshold.</div>
   </div>
 
   <div class="no-data-msg" id="noDataMsg">
@@ -385,8 +546,8 @@ const POLES = [{"lat":26.778624,"lon":-80.22938,"years":{"2022":{"u7":1,"v150":1
 const METRIC_CONFIG = {
   u7: {
     key: 'u7',
-    label: 'U2 Length > 7 ft',
-    desc: 'Poles where U2 encroachment length exceeds the 7-foot maintenance threshold.',
+    label: 'Encroachment > 8 ft',
+    desc: 'Poles where encroachment length exceeds the 8-foot maintenance threshold.',
     badgeClass: 'badge-u7',
     flagColor: '#4fc3f7',
     gradient: { 0.2:'#00ccff', 0.45:'#00ff88', 0.65:'#ffff00', 0.85:'#ff6600', 1.0:'#ff0000' },
@@ -394,8 +555,8 @@ const METRIC_CONFIG = {
   },
   v150: {
     key: 'v150',
-    label: 'U2 Volume > 150 cu ft',
-    desc: 'Poles where U2 encroachment volume exceeds the 150 cubic foot threshold.',
+    label: 'Volume > 150 cu ft',
+    desc: 'Poles where encroachment volume exceeds the 150 cubic foot threshold.',
     badgeClass: 'badge-v150',
     flagColor: '#ffa726',
     gradient: { 0.2:'#ffe066', 0.45:'#ffaa00', 0.65:'#ff6600', 0.85:'#cc3300', 1.0:'#990000' },
@@ -430,8 +591,10 @@ let circleLayer = null;  // L.layerGroup for dots
 // ── View toggle ──
 function setView(v) {
   currentView = v;
-  document.getElementById('btnPoints').classList.toggle('active', v === 'points');
-  document.getElementById('btnHeat').classList.toggle('active',   v === 'heat');
+  document.getElementById('btnPoints').classList.toggle('active',   v === 'points');
+  document.getElementById('btnHeat').classList.toggle('active',     v === 'heat');
+  document.getElementById('mBtnPoints').classList.toggle('active',  v === 'points');
+  document.getElementById('mBtnHeat').classList.toggle('active',    v === 'heat');
   document.getElementById('pointsLegend').classList.toggle('active', v === 'points');
   document.getElementById('heatLegend').classList.toggle('active',   v === 'heat');
   render();
@@ -485,9 +648,13 @@ function render() {
   // Stats
   const total = POLES.length;
   const active = flagged.length;
-  document.getElementById('statTotal').textContent  = total.toLocaleString();
-  document.getElementById('statActive').textContent = active.toLocaleString();
-  document.getElementById('statPct').textContent    = ((active / total) * 100).toFixed(1) + '%';
+  const pct = ((active / total) * 100).toFixed(1) + '%';
+  document.getElementById('statTotal').textContent   = total.toLocaleString();
+  document.getElementById('statActive').textContent  = active.toLocaleString();
+  document.getElementById('statPct').textContent     = pct;
+  document.getElementById('mStatTotal').textContent  = total.toLocaleString();
+  document.getElementById('mStatActive').textContent = active.toLocaleString();
+  document.getElementById('mStatPct').textContent    = pct;
 
   const noDataEl = document.getElementById('noDataMsg');
 
@@ -543,6 +710,22 @@ function renderHeat(flagged, cfg) {
     max: 1.0,
     gradient: cfg.gradient
   }).addTo(map);
+}
+
+// ── Mobile drawer ──
+function toggleDrawer() {
+  const drawer   = document.getElementById('mobileDrawer');
+  const backdrop = document.getElementById('drawerBackdrop');
+  const open     = drawer.classList.toggle('open');
+  backdrop.classList.toggle('open', open);
+}
+
+function syncFromMobile(field) {
+  if (field === 'year')   document.getElementById('yearSel').value   = document.getElementById('mYearSel').value;
+  if (field === 'metric') document.getElementById('metricSel').value = document.getElementById('mMetricSel').value;
+  if (field === 'month')  document.getElementById('monthSel').value  = document.getElementById('mMonthSel').value;
+  render();
+  toggleDrawer();
 }
 
 // ── Wire controls ──
