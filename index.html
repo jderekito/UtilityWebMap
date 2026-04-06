@@ -34,7 +34,6 @@
     overflow: hidden;
   }
 
-  /* ── Header ── */
   header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
@@ -64,7 +63,6 @@
 
   header h1 span { color: var(--text-muted); font-weight: 300; }
 
-  /* Desktop controls in header */
   .header-divider { width: 1px; height: 26px; background: var(--border); flex-shrink: 0; }
   .controls { display: flex; align-items: center; gap: 10px; flex: 1; flex-wrap: wrap; }
   .control-group { display: flex; align-items: center; gap: 6px; }
@@ -93,7 +91,51 @@
   select:hover { border-color: var(--accent); }
   select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,195,247,0.15); }
 
-  /* View toggle */
+  /* Intensity slider — desktop */
+  .intensity-group {
+    display: flex; align-items: center; gap: 8px;
+    transition: opacity 0.2s;
+  }
+  .intensity-group.hidden { opacity: 0; pointer-events: none; }
+
+  .intensity-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 90px; height: 4px;
+    border-radius: 2px;
+    background: var(--border);
+    outline: none; cursor: pointer;
+    position: relative;
+  }
+
+  .intensity-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2px solid var(--surface);
+    box-shadow: 0 0 0 1px var(--accent);
+    transition: transform 0.1s;
+  }
+
+  .intensity-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  .intensity-slider::-moz-range-thumb {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2px solid var(--surface);
+  }
+
+  .intensity-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; font-weight: 500;
+    color: var(--accent);
+    min-width: 28px; text-align: right;
+  }
+
   .view-toggle {
     display: flex; background: var(--surface2);
     border: 1px solid var(--border); border-radius: var(--radius);
@@ -111,7 +153,6 @@
   .view-btn.active { background: var(--accent); color: #0d1b2a; font-weight: 600; }
   .view-btn:not(.active):hover { color: var(--text); background: rgba(79,195,247,0.1); }
 
-  /* Stats */
   .stats { display: flex; align-items: center; gap: 18px; margin-left: auto; flex-shrink: 0; }
   .stat { display: flex; flex-direction: column; align-items: flex-end; }
 
@@ -125,13 +166,10 @@
     text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;
   }
 
-  /* Mobile filter button (hidden on desktop) */
   .mobile-filter-btn { display: none; }
 
-  /* ── Map ── */
   #map { flex: 1; z-index: 1; }
 
-  /* ── Legend ── */
   .legend-panel {
     position: absolute;
     bottom: 28px; left: 16px;
@@ -171,6 +209,20 @@
     font-family: 'DM Mono', monospace;
   }
 
+  /* Intensity row inside legend */
+  .legend-intensity {
+    display: none; margin-top: 10px;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+  }
+  .legend-intensity.active { display: block; }
+  .legend-intensity-row {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .legend-intensity .control-label { font-size: 10px; white-space: nowrap; }
+  .legend-intensity .intensity-slider { flex: 1; width: auto; }
+  .legend-intensity .intensity-value { font-size: 11px; }
+
   .legend-divider { height: 1px; background: var(--border); margin: 10px 0; }
 
   .metric-badge {
@@ -185,7 +237,6 @@
 
   .legend-desc { font-size: 11px; color: var(--text-muted); margin-top: 4px; line-height: 1.5; }
 
-  /* ── No data ── */
   .no-data-msg {
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%,-50%);
@@ -199,7 +250,6 @@
   .no-data-msg .icon { font-size: 26px; margin-bottom: 8px; }
   .no-data-msg p { color: var(--text-muted); font-size: 13px; }
 
-  /* ── Mobile bottom drawer ── */
   .mobile-drawer {
     display: none;
     position: fixed;
@@ -245,9 +295,7 @@
     font-size: 15px; border-radius: var(--radius);
   }
 
-  .drawer-view-toggle {
-    display: flex; gap: 8px;
-  }
+  .drawer-view-toggle { display: flex; gap: 8px; }
 
   .drawer-view-btn {
     flex: 1; padding: 10px;
@@ -265,7 +313,19 @@
     border-color: var(--accent); font-weight: 600;
   }
 
-  /* Mobile stats bar below header */
+  /* Mobile intensity row in drawer */
+  .drawer-intensity-row {
+    display: flex; align-items: center; gap: 10px;
+    transition: opacity 0.2s;
+  }
+  .drawer-intensity-row.hidden { opacity: 0.3; pointer-events: none; }
+  .drawer-intensity-row .intensity-slider { flex: 1; }
+  .drawer-intensity-row .intensity-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px; font-weight: 500;
+    color: var(--accent); min-width: 32px; text-align: right;
+  }
+
   .mobile-stats {
     display: none;
     background: var(--surface2);
@@ -293,7 +353,6 @@
     text-transform: uppercase; letter-spacing: 0.05em;
   }
 
-  /* ── Overlay backdrop ── */
   .drawer-backdrop {
     display: none;
     position: fixed; inset: 0;
@@ -303,7 +362,6 @@
 
   .drawer-backdrop.open { display: block; }
 
-  /* Leaflet overrides */
   .leaflet-control-zoom a {
     background: var(--surface2) !important; color: var(--text) !important;
     border-color: var(--border) !important;
@@ -316,17 +374,12 @@
 
   .leaflet-control-attribution a { color: var(--accent) !important; }
 
-  /* ════════════════════════════════════
-     MOBILE  ≤ 640px
-  ════════════════════════════════════ */
   @media (max-width: 640px) {
-    /* Hide desktop controls */
     .controls { display: none; }
     .header-divider { display: none; }
     .stats { display: none; }
     header h1 span { display: none; }
 
-    /* Show mobile filter button */
     .mobile-filter-btn {
       display: flex;
       align-items: center; gap: 6px;
@@ -339,19 +392,16 @@
       padding: 6px 12px; cursor: pointer;
     }
 
-    /* Show mobile stats row */
     .mobile-stats { display: flex; }
-
-    /* Show drawer */
     .mobile-drawer { display: block; }
 
-    /* Legend: compact, bottom-right on mobile */
     .legend-panel {
       bottom: 16px; left: auto; right: 16px;
       min-width: 160px; padding: 10px 12px;
     }
 
     .legend-desc { display: none; }
+    .legend-intensity { display: none !important; }
   }
 </style>
 </head>
@@ -410,6 +460,19 @@
         <button class="view-btn" id="btnHeat" onclick="setView('heat')">◈ Heat Map</button>
       </div>
     </div>
+
+    <div class="header-divider"></div>
+
+    <!-- Intensity slider — desktop, only visible in heat mode -->
+    <div class="control-group intensity-group hidden" id="intensityGroup">
+      <span class="control-label">Intensity</span>
+      <input
+        type="range" min="5" max="50" value="20" step="1"
+        class="intensity-slider" id="intensitySlider"
+        oninput="onIntensityChange(this.value)"
+      />
+      <span class="intensity-value" id="intensityVal">20</span>
+    </div>
   </div>
 
   <div class="stats">
@@ -427,13 +490,11 @@
     </div>
   </div>
 
-  <!-- Mobile filter button -->
   <button class="mobile-filter-btn" onclick="toggleDrawer()">
     <span>⚙</span> Filters
   </button>
 </header>
 
-<!-- Mobile stats bar -->
 <div class="mobile-stats">
   <div class="mobile-stat">
     <span class="mobile-stat-value" id="mStatTotal">—</span>
@@ -449,10 +510,8 @@
   </div>
 </div>
 
-<!-- Backdrop -->
 <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleDrawer()"></div>
 
-<!-- Mobile bottom drawer -->
 <div class="mobile-drawer" id="mobileDrawer">
   <div class="drawer-handle"></div>
   <div class="drawer-title">Map Filters</div>
@@ -499,17 +558,27 @@
         <button class="drawer-view-btn" id="mBtnHeat" onclick="setView('heat')">◈ Heat Map</button>
       </div>
     </div>
+    <!-- Mobile intensity row -->
+    <div class="drawer-row" id="mIntensityRow" style="display:none;">
+      <span class="drawer-label">Intensity</span>
+      <div class="drawer-intensity-row" id="mIntensityGroup">
+        <input
+          type="range" min="5" max="50" value="20" step="1"
+          class="intensity-slider" id="mIntensitySlider"
+          oninput="onMobileIntensityChange(this.value)"
+        />
+        <span class="intensity-value" id="mIntensityVal">20</span>
+      </div>
+    </div>
   </div>
 </div>
 
 <div style="position:relative; flex:1; display:flex; flex-direction:column;">
   <div id="map"></div>
 
-  <!-- Legend -->
   <div class="legend-panel">
     <div class="legend-title">Legend</div>
 
-    <!-- Points legend -->
     <div class="points-legend active" id="pointsLegend">
       <div class="dot-row">
         <div class="dot" style="background:#ef5350;"></div>
@@ -521,12 +590,23 @@
       </div>
     </div>
 
-    <!-- Heat legend -->
     <div class="heat-legend" id="heatLegend">
       <div class="legend-gradient" id="heatGradientBar"
         style="background: linear-gradient(to right, #00ccff, #00ff88, #ffff00, #ff6600, #ff0000);">
       </div>
       <div class="legend-labels"><span>Low</span><span>High</span></div>
+      <!-- Inline legend intensity control (desktop, visible when heat mode active) -->
+      <div class="legend-intensity active" id="legendIntensityPanel">
+        <div class="legend-intensity-row">
+          <span class="control-label">Radius</span>
+          <input
+            type="range" min="5" max="50" value="20" step="1"
+            class="intensity-slider" id="legendIntensitySlider"
+            oninput="onIntensityChange(this.value, 'legend')"
+          />
+          <span class="intensity-value" id="legendIntensityVal">20</span>
+        </div>
+      </div>
     </div>
 
     <div class="legend-divider"></div>
@@ -573,11 +653,13 @@ const METRIC_CONFIG = {
   }
 };
 
-// ── Map init — light basemap ──
+// Current intensity state
+let heatRadius = 20;
+let heatBlur   = 25;
+
 const map = L.map('map');
 map.fitBounds([[26.6922, -80.3578], [26.8240, -80.0750]], { padding: [24, 24] });
 
-// Light, bright basemap so heat colors pop
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
   subdomains: 'abcd',
@@ -586,7 +668,30 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
 
 let currentView = 'points';
 let heatLayer   = null;
-let circleLayer = null;  // L.layerGroup for dots
+let circleLayer = null;
+
+// ── Intensity change ──
+function onIntensityChange(val, source) {
+  val = parseInt(val);
+  heatRadius = val;
+  heatBlur   = Math.round(val * 1.25);
+
+  // Sync all sliders
+  if (source !== 'desktop') document.getElementById('intensitySlider').value = val;
+  if (source !== 'legend')  document.getElementById('legendIntensitySlider').value = val;
+  if (source !== 'mobile')  document.getElementById('mIntensitySlider').value = val;
+
+  // Sync all readouts
+  document.getElementById('intensityVal').textContent     = val;
+  document.getElementById('legendIntensityVal').textContent = val;
+  document.getElementById('mIntensityVal').textContent    = val;
+
+  if (currentView === 'heat') render();
+}
+
+function onMobileIntensityChange(val) {
+  onIntensityChange(val, 'mobile');
+}
 
 // ── View toggle ──
 function setView(v) {
@@ -597,6 +702,12 @@ function setView(v) {
   document.getElementById('mBtnHeat').classList.toggle('active',    v === 'heat');
   document.getElementById('pointsLegend').classList.toggle('active', v === 'points');
   document.getElementById('heatLegend').classList.toggle('active',   v === 'heat');
+
+  // Show/hide intensity controls
+  const isHeat = v === 'heat';
+  document.getElementById('intensityGroup').classList.toggle('hidden', !isHeat);
+  document.getElementById('mIntensityRow').style.display = isHeat ? 'flex' : 'none';
+
   render();
 }
 
@@ -630,7 +741,6 @@ function getFiltered() {
 
 // ── Render ──
 function render() {
-  // Clear existing layers
   if (heatLayer)   { map.removeLayer(heatLayer);   heatLayer = null; }
   if (circleLayer) { map.removeLayer(circleLayer);  circleLayer = null; }
 
@@ -638,14 +748,12 @@ function render() {
   const cfg    = METRIC_CONFIG[metric];
   const { flagged, unflagged } = getFiltered();
 
-  // Update legend badge
   const badge = document.getElementById('legendBadge');
   badge.textContent = cfg.label;
   badge.className   = 'metric-badge ' + cfg.badgeClass;
   document.getElementById('legendDesc').textContent = cfg.desc;
   document.getElementById('heatGradientBar').style.background = cfg.gradientCss;
 
-  // Stats
   const total = POLES.length;
   const active = flagged.length;
   const pct = ((active / total) * 100).toFixed(1) + '%';
@@ -674,7 +782,6 @@ function render() {
 function renderPoints(flagged, unflagged, cfg) {
   const layers = [];
 
-  // Unflagged — small gray dots
   for (const p of unflagged) {
     layers.push(L.circleMarker([p.lat, p.lon], {
       radius: 2.5,
@@ -685,7 +792,6 @@ function renderPoints(flagged, unflagged, cfg) {
     }));
   }
 
-  // Flagged — colored dots with slight glow border
   for (const p of flagged) {
     layers.push(L.circleMarker([p.lat, p.lon], {
       radius: 4,
@@ -704,8 +810,8 @@ function renderHeat(flagged, cfg) {
   const pts = flagged.map(p => [p.lat, p.lon, 0.8]);
 
   heatLayer = L.heatLayer(pts, {
-    radius: 20,
-    blur: 25,
+    radius: heatRadius,
+    blur:   heatBlur,
     maxZoom: 16,
     max: 1.0,
     gradient: cfg.gradient
@@ -728,7 +834,6 @@ function syncFromMobile(field) {
   toggleDrawer();
 }
 
-// ── Wire controls ──
 ['yearSel', 'metricSel', 'monthSel'].forEach(id => {
   document.getElementById(id).addEventListener('change', render);
 });
